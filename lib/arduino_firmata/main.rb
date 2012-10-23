@@ -5,6 +5,8 @@ module ArduinoFirmata
 
   class Arduino
 
+    attr_reader :version
+
     def initialize(serial_name=nil, bps=57600)
       serial_name = ArduinoFirmata.list[0] unless serial_name
       @wait_for_data = 0
@@ -18,8 +20,7 @@ module ArduinoFirmata
       @digital_input_data = Array.new(16, 0)
       @analog_input_data = Array.new(16, 0)
 
-      @major_version
-      @minor_version
+      @version
 
       @serial = SerialPort.new(serial_name, bps, 8, 1, 0)
       sleep 3
@@ -40,14 +41,6 @@ module ArduinoFirmata
         write 1
       end
 
-    end
-
-    def write(cmd)
-      @serial.write_nonblock cmd.chr
-    end
-
-    def read
-      @serial.read_nonblock 9600 rescue EOFError
     end
 
     def digital_read(pin)
@@ -84,9 +77,17 @@ module ArduinoFirmata
       write(value >> 7)
     end
 
+    private
+    def write(cmd)
+      @serial.write_nonblock cmd.chr
+    end
+
+    def read
+      @serial.read_nonblock 9600 rescue EOFError
+    end
+
     def process_input
-      bytes = StringIO.new(String(read)).bytes
-      bytes.each do |input_data|
+      StringIO.new(String read).bytes.each do |input_data|
         command = nil
 
         if @parsing_sysex
@@ -106,8 +107,7 @@ module ArduinoFirmata
             when ANALOG_MESSAGE
               @analog_input_data[@multi_byte_channel] = (@stored_input_data[0] << 7) + @stored_input_data[1]
             when REPORT_VERSION
-              @minor_version = @stored_input_data[1]
-              @major_version = @stored_input_data[0]
+              @version = "#{@stored_input_data[1]}.#{@stored_input_data[0]}"
             end
           end
         else

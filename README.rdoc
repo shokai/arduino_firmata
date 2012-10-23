@@ -18,6 +18,10 @@ or
 
   arduino = ArduinoFirmata::Arduino.new '/dev/tty.usb-device-name'
 
+Board Version
+
+  puts "firmata version #{arduino.version}"
+
 
 Digital Write
 
