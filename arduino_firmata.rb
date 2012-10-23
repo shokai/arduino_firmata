@@ -24,7 +24,8 @@ class ArduinoFirmata
   START_SYSEX     = 0xF0 # start a MIDI SysEx message
   END_SYSEX       = 0xF7 # end a MIDI SysEx message
 
-  def initialize(serial_name, bps=57600)
+  def initialize(serial_name=nil, bps=57600)
+    serial_name = ArduinoFirmata.list[0] unless serial_name
     @wait_for_data = 0
     @execute_multi_byte_command = 0
     @multi_byte_channel = 0
