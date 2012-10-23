@@ -46,7 +46,8 @@ Analog Read
 == REQUIREMENTS:
 
 * Arduino Standard Firmata v2.2
-** Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
+Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
+
 * Ruby 1.8.7+
 * Ruby 1.9.2+
 
