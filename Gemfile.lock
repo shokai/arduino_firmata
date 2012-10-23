@@ -1,0 +1,26 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    RedCloth (4.2.9)
+    activesupport (2.3.14)
+    hoe (3.1.0)
+      rake (~> 0.8)
+    newgem (1.5.3)
+      RedCloth (>= 4.1.1)
+      activesupport (~> 2.3.4)
+      hoe (>= 2.4.0)
+      rubigen (>= 1.5.3)
+      syntax (>= 1.0.0)
+    rake (0.9.2.2)
+    rubigen (1.5.8)
+      activesupport (>= 2.3.5, < 3.2.0)
+    serialport (1.1.0)
+    syntax (1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  hoe
+  newgem
+  serialport
