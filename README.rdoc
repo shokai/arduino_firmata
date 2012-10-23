@@ -8,7 +8,7 @@
 
 == DESCRIPTION:
 
-Arduino Firmata protocol implementation on Ruby
+Arduino Firmata protocol (http://firmata.org) implementation on Ruby
 
 == SYNOPSIS:
 
