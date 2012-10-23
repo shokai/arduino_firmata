@@ -2,23 +2,54 @@
 
 * http://github.com/shokai/arduino-firmata-ruby
 
+== INSTALL:
+
+* gem install arduino_firmata
+
 == DESCRIPTION:
 
 Arduino Firmata protocol implementation on Ruby
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+  arduino = ArduinoFirmata::Arduino.new
+
+or
+
+  arduino = ArduinoFirmata::Arduino.new '/dev/tty.usb-device-name'
+
+
+Digital Write
+
+  arduino.digital_write 13, true
+  arduino.digital_write 13, false
+
+
+Digital Read
+
+  arduino.pin_mode 7, ArduinoFirmata::INPUT
+  puts arduino.digital_read 7  # => true/false
+
+
+Analog Write (PWM)
+
+  0.upto(255) do |i|
+    arduino.analog_write 11, i
+    sleep 0.01
+  end
+
+Analog Read
+
+  puts arduino.analog_read 0  # => 0 ~ 1023
+
 
 == REQUIREMENTS:
 
-* Arduino
+* Arduino Standard Firmata v2.2
+** Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
 * Ruby 1.8.7+
 * Ruby 1.9.2+
 
-== INSTALL:
-
-* gem install arduino_firmata
 
 == LICENSE:
 
