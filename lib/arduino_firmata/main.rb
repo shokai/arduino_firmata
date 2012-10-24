@@ -7,7 +7,7 @@ module ArduinoFirmata
   def self.connect(serial_name=nil, params={})
     serial_name = self.list[0] unless serial_name
 
-    self.default_params.each do |k,v|
+    ArduinoFirmata::Params.default.each do |k,v|
       params[k] = v unless params[k]
     end
 

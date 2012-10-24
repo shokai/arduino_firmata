@@ -1,5 +1,16 @@
 module ArduinoFirmata
 
+  class Params
+    def self.default
+      {
+        :bps => 57600,
+        :bit => 8,
+        :parity => 0,
+        :stopbit => 1
+      }
+    end
+  end
+
   INPUT  = 0
   OUTPUT = 1
   ANALOG = 2
@@ -20,14 +31,5 @@ module ArduinoFirmata
   SYSTEM_RESET    = 0xFF # reset from MIDI
   START_SYSEX     = 0xF0 # start a MIDI SysEx message
   END_SYSEX       = 0xF7 # end a MIDI SysEx message
-
-  def self.default_params
-    {
-      :bps => 57600,
-      :bit => 8,
-      :parity => 0,
-      :stopbit => 1
-    }
-  end
 
 end
