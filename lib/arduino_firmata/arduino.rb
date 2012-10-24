@@ -19,6 +19,7 @@ module ArduinoFirmata
       @version = nil
 
       @serial = SerialPort.new(serial_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
+      @serial.read_timeout = 3
       sleep 3
 
       Thread.new{
@@ -43,6 +44,10 @@ module ArduinoFirmata
       end
       sleep 0.5
 
+    end
+
+    def close
+      @serial.close
     end
 
     def digital_read(pin)

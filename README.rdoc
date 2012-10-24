@@ -18,6 +18,7 @@ or
 
   arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name'
 
+
 Board Version
 
   puts "firmata version #{arduino.version}"
@@ -42,9 +43,16 @@ Analog Write (PWM)
     sleep 0.01
   end
 
+
 Analog Read
 
   puts arduino.analog_read 0  # => 0 ~ 1023
+
+
+Close
+
+  arduino.close
+
 
 see samples https://github.com/shokai/arduino_firmata/tree/gem/samples
 
