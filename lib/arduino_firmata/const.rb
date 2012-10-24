@@ -1,7 +1,7 @@
 module ArduinoFirmata
 
   def self.list
-    Dir.entries('/dev').grep(/tty\.usb/).map{|fname| "/dev/#{fname}"}
+    Dir.entries('/dev').grep(/tty\.?usb/i).map{|fname| "/dev/#{fname}"}
   end
 
   INPUT  = 0
