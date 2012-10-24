@@ -8,6 +8,7 @@ Rakefile
 lib/arduino_firmata.rb
 lib/arduino_firmata/arduino.rb
 lib/arduino_firmata/const.rb
+lib/arduino_firmata/event.rb
 lib/arduino_firmata/main.rb
 samples/README.md
 samples/analog_read_write.rb
@@ -15,6 +16,7 @@ samples/block.rb
 samples/digital_read.rb
 samples/led_blink.rb
 samples/led_fade.rb
+samples/on_changed.rb
 samples/tweet_temperature.rb
 script/console
 script/destroy
