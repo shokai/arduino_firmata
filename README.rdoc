@@ -1,6 +1,6 @@
 = arduino_firmata
 
-* http://github.com/shokai/arduino-firmata-ruby
+* http://github.com/shokai/arduino_firmata
 
 == INSTALL:
 
@@ -46,7 +46,7 @@ Analog Read
 
   puts arduino.analog_read 0  # => 0 ~ 1023
 
-see samples https://github.com/shokai/arduino-firmata-ruby/tree/gem/samples
+see samples https://github.com/shokai/arduino_firmata/tree/gem/samples
 
 == REQUIREMENTS:
 
