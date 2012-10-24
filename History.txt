@@ -1,3 +1,8 @@
+=== 0.0.8 2012-10-25
+
+* bugfix digital_write
+* add Sinatra sample
+
 === 0.0.7 2012-10-25
 
 * ArduinoFirmata::Arduino#on_analog_changed

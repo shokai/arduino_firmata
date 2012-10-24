@@ -17,6 +17,7 @@ samples/digital_read.rb
 samples/led_blink.rb
 samples/led_fade.rb
 samples/on_changed.rb
+samples/sinatra_arduino.rb
 samples/tweet_temperature.rb
 script/console
 script/destroy
