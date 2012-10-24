@@ -1,3 +1,7 @@
+=== 0.0.2 2012-10-24
+
+* wait until arduino connect.
+
 === 0.0.1 2012-10-24
 
 * digital/analog read/write
