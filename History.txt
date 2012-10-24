@@ -1,3 +1,7 @@
+=== 0.0.4 2012-10-24
+
+* use ArduinoFirmata.connect
+
 === 0.0.3 2012-10-24
 
 * get ArduinoFirmata::list on ubuntu

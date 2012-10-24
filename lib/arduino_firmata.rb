@@ -8,5 +8,5 @@ require 'arduino_firmata/const'
 require 'arduino_firmata/arduino'
 
 module ArduinoFirmata
-  VERSION = '0.0.3'
+  VERSION = '0.0.4'
 end
