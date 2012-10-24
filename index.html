@@ -60,7 +60,7 @@
 </pre></div>
 
 <h3>Digital Write</h3>
-
+on board Yellow LED
 <div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">digital_write</span> <span class="mi">13</span><span class="p">,</span> <span class="kp">true</span>
 <span class="n">arduino</span><span class="o">.</span><span class="n">digital_write</span> <span class="mi">13</span><span class="p">,</span> <span class="kp">false</span>
 </pre></div>
@@ -78,15 +78,22 @@
   <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mo">01</span>
 <span class="k">end</span>
 </pre></div>
+<p>
+Digital 11 PIN -&gt; LED -&gt; GND
+<img src="./images/analog_write.jpg" />
+</p>
 
 <h3>Analog Read</h3>
-
 <div class="highlight"><pre><span class="nb">puts</span> <span class="n">arduino</span><span class="o">.</span><span class="n">analog_read</span> <span class="mi">0</span>  <span class="c1"># =&gt; 0 ~ 1023</span>
 
 <span class="n">arduino</span><span class="o">.</span><span class="n">on_analog_changed</span> <span class="mi">0</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>
   <span class="nb">puts</span> <span class="n">value</span>  <span class="c1"># =&gt; 0 ~ 1023</span>
 <span class="k">end</span>
 </pre></div>
+<p>
+GND &amp; 5V -&gt; CdS &amp; 10kΩ -&gt  Analog 0 PIN
+<img src="./images/analog_read.jpg" />
+</p>
 
 <h3>Close</h3>
 
@@ -109,7 +116,7 @@
 <h3>More Samples</h3>
 
 <ul>
-<li><a href="https://github.com/shokai/arduino_firmata/tree/gem/samples">https://github.com/shokai/arduino_firmata/tree/gem/samples</a></li>
+<li><a href="https://github.com/shokai/arduino_firmata/tree/master/samples">https://github.com/shokai/arduino_firmata/tree/master/samples</a></li>
 </ul>
         </section>
 
