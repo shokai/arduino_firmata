@@ -68,7 +68,7 @@ module ArduinoFirmata
 
     def digital_write(pin, value)
       port_num = (pin >> 3) & 0x0F
-      if value == 0 or value == true
+      if value == 0 or value == false
         @digital_output_data[port_num] &= ~(1 << (pin & 0x07))
       else
         @digital_output_data[port_num] |= (1 << (pin & 0x07))
