@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #usr/bin/env ruby
-require 'rubygems'
 $:.unshift File.expand_path '../lib', File.dirname(__FILE__)
+require 'rubygems'
 require 'arduino_firmata'
 require 'tw'
 
