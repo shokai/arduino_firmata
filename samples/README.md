@@ -6,6 +6,7 @@ Digital/Analog IO
 - digital_read.rb
 - led_blink.rb
 - led_fade.rb
+- on_changed.rb
 
 
 Tweet Temperature
