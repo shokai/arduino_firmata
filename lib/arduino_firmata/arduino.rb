@@ -18,6 +18,8 @@ module ArduinoFirmata
 
       @version = nil
 
+      @on_analog_changed = []
+
       @serial = SerialPort.new(serial_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
       @serial.read_timeout = 3
       sleep 3
@@ -112,7 +114,11 @@ module ArduinoFirmata
             when DIGITAL_MESSAGE
               @digital_input_data[@multi_byte_channel] = (@stored_input_data[0] << 7) + @stored_input_data[1]
             when ANALOG_MESSAGE
-              @analog_input_data[@multi_byte_channel] = (@stored_input_data[0] << 7) + @stored_input_data[1]
+              analog_value = (@stored_input_data[0] << 7) + @stored_input_data[1]
+              unless @analog_input_data[@multi_byte_channel] == analog_value
+                on_analog_changed @multi_byte_channel, analog_value
+              end
+              @analog_input_data[@multi_byte_channel] = analog_value
             when REPORT_VERSION
               @version = "#{@stored_input_data[1]}.#{@stored_input_data[0]}"
             end

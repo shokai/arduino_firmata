@@ -46,6 +46,10 @@ Analog Write (PWM)
 Analog Read
 
   puts arduino.analog_read 0  # => 0 ~ 1023
+  
+  arduino.on_analog_changed 0 do |value|
+    puts value  # => 0 ~ 1023
+  end
 
 
 Close
