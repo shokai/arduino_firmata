@@ -20,7 +20,7 @@ module ArduinoFirmata
       @digital_input_data = Array.new(16, 0)
       @analog_input_data = Array.new(16, 0)
 
-      @version
+      @version = nil
 
       @serial = SerialPort.new(serial_name, bps, 8, 1, 0)
       sleep 3
@@ -40,6 +40,12 @@ module ArduinoFirmata
         write(REPORT_DIGITAL | i)
         write 1
       end
+
+      loop do
+        break if @version
+        sleep 0.3
+      end
+      sleep 0.5
 
     end
 
