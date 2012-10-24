@@ -71,7 +71,7 @@ Block
 
 
 
-see samples https://github.com/shokai/arduino_firmata/tree/gem/samples
+see samples https://github.com/shokai/arduino_firmata/tree/master/samples
 
 == REQUIREMENTS:
 
