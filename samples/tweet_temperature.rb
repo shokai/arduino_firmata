@@ -5,7 +5,7 @@ $:.unshift File.expand_path '../lib', File.dirname(__FILE__)
 require 'arduino_firmata'
 require 'tw'
 
-arduino = ArduinoFirmata::Arduino.new
+arduino = ArduinoFirmata.connect
 
 ##  LM35DZ -> Analog 1 PIN
 puts temp = arduino.analog_read(1)*100*5/1024

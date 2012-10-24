@@ -12,11 +12,11 @@ Arduino Firmata protocol (http://firmata.org) implementation on Ruby.
 
 == SYNOPSIS:
 
-  arduino = ArduinoFirmata::Arduino.new
+  arduino = ArduinoFirmata.connect
 
 or
 
-  arduino = ArduinoFirmata::Arduino.new '/dev/tty.usb-device-name'
+  arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name'
 
 Board Version
 

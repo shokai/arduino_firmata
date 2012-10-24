@@ -3,7 +3,7 @@ require 'rubygems'
 $:.unshift File.expand_path '../lib', File.dirname(__FILE__)
 require 'arduino_firmata'
 
-arduino = ArduinoFirmata::Arduino.new ARGV.shift
+arduino = ArduinoFirmata.connect ARGV.shift
 
 arduino.pin_mode 7, ArduinoFirmata::INPUT
 
