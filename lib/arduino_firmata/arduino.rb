@@ -10,7 +10,7 @@ module ArduinoFirmata
       @multi_byte_channel = 0
       @stored_input_data = []
       @parsing_sysex = false
-      @sysex_bytes_read
+      @sysex_bytes_read = nil
 
       @digital_output_data = Array.new(16, 0)
       @digital_input_data = Array.new(16, 0)
