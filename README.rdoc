@@ -12,10 +12,9 @@ Arduino Firmata protocol (http://firmata.org) implementation on Ruby.
 
 == SYNOPSIS:
 
-  arduino = ArduinoFirmata.connect
+Setup
 
-or
-
+  arduino = ArduinoFirmata.connect  # use default arduino
   arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name'
 
 
@@ -52,6 +51,20 @@ Analog Read
 Close
 
   arduino.close
+
+
+Block
+
+  ArduinoFirmata.connect do
+    puts "firmata version #{version}"
+
+    30.times do
+      an = analog_read 0
+      analog_write 11, an
+      sleep 0.01
+    end
+  end
+
 
 
 see samples https://github.com/shokai/arduino_firmata/tree/gem/samples
