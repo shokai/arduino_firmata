@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Arduino Firmata by shokai</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Arduino Firmata</h1>
+        <h2>Firmata protocol (http://firmata.org) implementation on Ruby.</h2>
+        <a href="https://github.com/shokai/arduino_firmata" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>arduino_firmata</h1>
+
+<ul>
+<li><a href="http://github.com/shokai/arduino_firmata">http://github.com/shokai/arduino_firmata</a></li>
+<li><a href="https://rubygems.org/gems/arduino_firmata">https://rubygems.org/gems/arduino_firmata</a></li>
+</ul><h2>INSTALL:</h2>
+
+<pre><code>% gem install arduino_firmata
+</code></pre>
+
+<h2>REQUIREMENTS:</h2>
+
+<ul>
+<li>Ruby 1.8.7+</li>
+<li>Ruby 1.9.2+</li>
+<li>Arduino Standard Firmata v2.2</li>
+</ul><p>Arduino IDE -&gt; [File] -&gt; [Examples] -&gt; [Firmata] -&gt; [StandardFirmata]</p>
+
+<h2>SYNOPSIS:</h2>
+
+<h3>Setup</h3>
+
+<div class="highlight"><pre><span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span>  <span class="c1"># use default arduino</span>
+<span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span> <span class="s1">'/dev/tty.usb-device-name'</span>
+</pre></div>
+
+<h3>Board Version</h3>
+
+<div class="highlight"><pre><span class="nb">puts</span> <span class="s2">"firmata version </span><span class="si">#{</span><span class="n">arduino</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span>
+</pre></div>
+
+<h3>Digital Write</h3>
+
+<div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">digital_write</span> <span class="mi">13</span><span class="p">,</span> <span class="kp">true</span>
+<span class="n">arduino</span><span class="o">.</span><span class="n">digital_write</span> <span class="mi">13</span><span class="p">,</span> <span class="kp">false</span>
+</pre></div>
+
+<h3>Digital Read</h3>
+
+<div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">pin_mode</span> <span class="mi">7</span><span class="p">,</span> <span class="no">ArduinoFirmata</span><span class="o">::</span><span class="no">INPUT</span>
+<span class="nb">puts</span> <span class="n">arduino</span><span class="o">.</span><span class="n">digital_read</span> <span class="mi">7</span>  <span class="c1"># =&gt; true/false</span>
+</pre></div>
+
+<h3>Analog Write (PWM)</h3>
+
+<div class="highlight"><pre><span class="mi">0</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+  <span class="n">arduino</span><span class="o">.</span><span class="n">analog_write</span> <span class="mi">11</span><span class="p">,</span> <span class="n">i</span>  <span class="c1"># &lt;= 0 ~ 255</span>
+  <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mo">01</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>Analog Read</h3>
+
+<div class="highlight"><pre><span class="nb">puts</span> <span class="n">arduino</span><span class="o">.</span><span class="n">analog_read</span> <span class="mi">0</span>  <span class="c1"># =&gt; 0 ~ 1023</span>
+
+<span class="n">arduino</span><span class="o">.</span><span class="n">on_analog_changed</span> <span class="mi">0</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">value</span>  <span class="c1"># =&gt; 0 ~ 1023</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>Close</h3>
+
+<div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">close</span>
+</pre></div>
+
+<h3>Block</h3>
+
+<div class="highlight"><pre><span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"firmata version </span><span class="si">#{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span>
+
+  <span class="mi">30</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+    <span class="n">an</span> <span class="o">=</span> <span class="n">analog_read</span> <span class="mi">0</span>
+    <span class="n">analog_write</span> <span class="mi">11</span><span class="p">,</span> <span class="n">an</span>
+    <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mo">01</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>More Samples</h3>
+
+<ul>
+<li><a href="https://github.com/shokai/arduino_firmata/tree/gem/samples">https://github.com/shokai/arduino_firmata/tree/gem/samples</a></li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/shokai/arduino_firmata/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/shokai/arduino_firmata/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/shokai/arduino_firmata"></a> is maintained by <a href="https://github.com/shokai">shokai</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
