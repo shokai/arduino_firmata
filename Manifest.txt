@@ -11,6 +11,7 @@ lib/arduino_firmata/const.rb
 lib/arduino_firmata/main.rb
 samples/README.md
 samples/analog_read_write.rb
+samples/block.rb
 samples/digital_read.rb
 samples/led_blink.rb
 samples/led_fade.rb
@@ -19,4 +20,5 @@ script/console
 script/destroy
 script/generate
 test/test_arduino_firmata.rb
+test/test_block.rb
 test/test_helper.rb

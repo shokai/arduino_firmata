@@ -1,3 +1,7 @@
+=== 0.0.6 2012-10-24
+
+* block syntax on ArduinoFirmata::connect
+
 === 0.0.5 2012-10-24
 
 * ArduinoFirmata::Arduino.close
