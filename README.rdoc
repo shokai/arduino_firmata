@@ -1,6 +1,6 @@
 = arduino_firmata
 
-* http://github.com/shokai/arduino_firmata
+* http://shokai.github.com/arduino_firmata
 
 == INSTALL:
 
