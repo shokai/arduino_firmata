@@ -1,3 +1,5 @@
-require 'stringio'
-require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/arduino_firmata'
+require 'rubygems'
+require 'minitest/autorun'
+
+$:.unshift File.expand_path '../lib', File.dirname(__FILE__)
+require 'arduino_firmata'

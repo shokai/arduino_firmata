@@ -5,6 +5,7 @@ GEM
     activesupport (2.3.14)
     hoe (3.1.0)
       rake (~> 0.8)
+    minitest (4.1.0)
     newgem (1.5.3)
       RedCloth (>= 4.1.1)
       activesupport (~> 2.3.4)
@@ -22,5 +23,6 @@ PLATFORMS
 
 DEPENDENCIES
   hoe
+  minitest
   newgem
   serialport
