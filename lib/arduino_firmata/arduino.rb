@@ -1,6 +1,3 @@
-require 'serialport'
-require 'stringio'
-
 module ArduinoFirmata
 
   class Arduino
