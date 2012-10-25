@@ -1,3 +1,7 @@
+=== 0.1.1 2012-10-26
+
+* ArduinoFirmata::Arduino#servo_write(pin, angle)
+
 === 0.1.0 2012-10-25
 
 * fix samples link

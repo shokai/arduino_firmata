@@ -9,5 +9,5 @@ require 'arduino_firmata/arduino'
 require 'arduino_firmata/event'
 
 module ArduinoFirmata
-  VERSION = '0.1.0'
+  VERSION = '0.1.1'
 end
