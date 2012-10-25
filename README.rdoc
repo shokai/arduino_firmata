@@ -52,6 +52,15 @@ Analog Read
   end
 
 
+Servo
+
+  loop do
+    angle = rand(180)
+    arduino.servo_write 11, angle
+    sleep 1
+  end
+
+
 Close
 
   arduino.close

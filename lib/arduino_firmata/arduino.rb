@@ -86,6 +86,13 @@ module ArduinoFirmata
       write(value >> 7)
     end
 
+    def servo_write(pin, angle)
+      pin_mode pin, SERVO
+      write(ANALOG_MESSAGE | (pin & 0x0F))
+      write(angle & 0x7F)
+      write(angle >> 7)
+    end
+
     private
     def write(cmd)
       @serial.write_nonblock cmd.chr
