@@ -98,6 +98,17 @@ GND &amp; 5V -&gt; CdS &amp; 10kΩ -&gt  Analog 0 PIN
 <img src="./images/analog_read.jpg" />
 </p>
 
+
+<h3>Servo Motor</h3>
+<div class="highlight"><pre><span class="n">loop</span> <span class="k">do</span>
+  <span class="n">angle</span> <span class="p">=</span> <span class="n">rand</span> <span class="mi">180</span>
+  <span class="n">puts</span> <span class="s">&quot;servo angle #{</span><span class="n">angle</span><span class="s">}&quot;</span>
+  <span class="n">arduino</span><span class="p">.</span><span class="n">servo_write</span> <span class="mi">11</span><span class="p">,</span> <span class="n">angle</span>
+  <span class="n">sleep</span> <span class="mi">1</span>
+<span class="n">end</span>
+</pre></div>
+
+
 <h3>Close</h3>
 
 <div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">close</span>
