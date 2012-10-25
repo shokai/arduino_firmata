@@ -52,7 +52,7 @@ Analog Read
   end
 
 
-Servo
+Servo Motor
 
   loop do
     angle = rand(180)
