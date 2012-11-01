@@ -24,6 +24,19 @@ module ArduinoFirmata
       @serial.read_timeout = 3
       sleep 3
 
+      trap 'SIGHUP' do
+        close
+      end
+      trap 'SIGINT' do
+        close
+      end
+      trap 'SIGKILL' do
+        close
+      end
+      trap 'SIGTERM' do
+        close
+      end
+
       Thread.new{
         loop do
           process_input
