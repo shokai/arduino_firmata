@@ -5,6 +5,7 @@ History.txt
 Manifest.txt
 README.rdoc
 Rakefile
+bin/arduino_firmata
 lib/arduino_firmata.rb
 lib/arduino_firmata/arduino.rb
 lib/arduino_firmata/const.rb

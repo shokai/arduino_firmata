@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+$:.unshift File.expand_path '../lib', File.dirname(__FILE__)
+require 'arduino_firmata'
+
+if ARGV.size < 2
+  STDERR.puts "arduino_firmata /dev/tty.usb-devicename COMMAND"
+  STDERR.puts "arduino_firmata /dev/tty.usb-devicename \"analog_read 1\""
+  STDERR.puts "arduino_firmata /dev/tty.usb-devicename \"servo_write 11, 135\""
+  exit 1
+end
+
+begin
+  arduino = ArduinoFirmata.connect ARGV.shift
+rescue StandardError, Timeout::Error => e
+  STDERR.puts e
+  exit 1
+end
+print arduino.instance_eval ARGV.join(' ')
+sleep 1
