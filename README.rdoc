@@ -10,6 +10,14 @@
 
 Arduino Firmata protocol (http://firmata.org) implementation on Ruby.
 
+== REQUIREMENTS:
+
+* Arduino Standard Firmata v2.2
+Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
+
+* Ruby 1.8.7+
+* Ruby 1.9.2+
+
 == SYNOPSIS:
 
 Setup
@@ -82,13 +90,6 @@ Block
 
 see samples https://github.com/shokai/arduino_firmata/tree/master/samples
 
-== REQUIREMENTS:
-
-* Arduino Standard Firmata v2.2
-Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
-
-* Ruby 1.8.7+
-* Ruby 1.9.2+
 
 == TEST:
 
