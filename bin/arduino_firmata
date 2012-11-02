@@ -2,19 +2,36 @@
 require 'rubygems'
 $:.unshift File.expand_path '../lib', File.dirname(__FILE__)
 require 'arduino_firmata'
+require 'args_parser'
 
-if ARGV.size < 2
-  STDERR.puts "arduino_firmata /dev/tty.usb-devicename COMMAND"
-  STDERR.puts "arduino_firmata /dev/tty.usb-devicename \"analog_read 1\""
-  STDERR.puts "arduino_firmata /dev/tty.usb-devicename \"servo_write 11, 135\""
+parser = ArgsParser.parse ARGV, :style => :equal do
+  arg :arduino, 'arduino port', :default => ArduinoFirmata.list[0]
+  arg :version, 'show version', :alias => :v
+  arg :help, 'show help', :alias => :h
+end
+
+if parser.has_option? :version
+  puts "ArduinoFirmata v#{ArduinoFirmata::VERSION}"
+  exit
+end
+
+if parser.has_option? :help or parser.argv.empty?
+  STDERR.puts parser.help
+  STDERR.puts
+  STDERR.puts "e.g."
+  STDERR.puts "  arduino_firmata COMMAND"
+  STDERR.puts "  arduino_firmata COMMAND --arduino=/dev/tty.usb-devicename"
+  STDERR.puts "  arduino_firmata \"analog_read 1\""
+  STDERR.puts "  arduino_firmata \"servo_write 11, 135\" --arduino=/dev/tty.usb-devicename"
   exit 1
 end
 
 begin
-  arduino = ArduinoFirmata.connect ARGV.shift
+  arduino = ArduinoFirmata.connect parser[:arduino]
 rescue StandardError, Timeout::Error => e
   STDERR.puts e
   exit 1
 end
-print arduino.instance_eval ARGV.join(' ')
+
+print arduino.instance_eval parser.argv.join(' ')
 sleep 1

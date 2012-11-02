@@ -14,7 +14,8 @@ $hoe = Hoe.spec 'arduino_firmata' do
   self.developer 'Sho Hashimoto', 'hashimoto@shokai.org'
   #self.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
   self.rubyforge_name       = self.name # TODO this is default value
-  self.extra_deps         = [['serialport','>= 1.1.0', '< 2.0.0']]
+  self.extra_deps         = [['serialport','>= 1.1.0', '< 2.0.0'],
+                             ['args_parser','>= 0.1.2', '< 1.0.0']]
 
 end
 
