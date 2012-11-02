@@ -4,7 +4,7 @@ class TestBlock < MiniTest::Unit::TestCase
 
   def test_block
     version_ = nil
-    ArduinoFirmata.connect do
+    ArduinoFirmata.connect ENV['ARDUINO'] do
       version_ = version
     end
     assert version_ and version_ > '2.0'

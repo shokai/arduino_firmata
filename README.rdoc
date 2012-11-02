@@ -90,6 +90,12 @@ Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
 * Ruby 1.8.7+
 * Ruby 1.9.2+
 
+== TEST:
+
+  % gem install bundler
+  % bundle install
+  % export ARDUINO=/dev/tty.usb-device-name
+  % rake test
 
 == LICENSE:
 
