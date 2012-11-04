@@ -1,4 +1,5 @@
 *#*
 *~
 pkg/*
+tmp/*
 .DS_Store
