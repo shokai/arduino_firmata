@@ -53,7 +53,10 @@
 
 <h3>Setup</h3>
 
-<div class="highlight"><pre><span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span>  <span class="c1"># use default arduino</span>
+<div class="highlight"><pre><span class="n">require</span> <span class="s">&quot;rubygems&quot;</span>
+<span class="n">require</span> <span class="s">&quot;arduino_firmata&quot;</span>
+
+<span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span>  <span class="c1"># use default arduino</span>
 <span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span> <span class="s1">"/dev/tty.usb-device-name"</span>
 </pre></div>
 
