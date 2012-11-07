@@ -22,6 +22,8 @@ Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
 
 Setup
 
+  require 'arduino_firmata'
+  
   arduino = ArduinoFirmata.connect  # use default arduino
   arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name'
 
