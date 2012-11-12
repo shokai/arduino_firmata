@@ -1,7 +1,7 @@
 module ArduinoFirmata
 
   def self.list
-    Dir.entries('/dev').grep(/tty\.?usb/i).map{|fname| "/dev/#{fname}"}
+    Dir.entries('/dev').grep(/tty\.?(usb|acm)/i).map{|fname| "/dev/#{fname}"}
   end
 
   def self.connect(serial_name=nil, params={}, &block)
