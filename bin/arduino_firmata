@@ -3,15 +3,25 @@ require 'rubygems'
 $:.unshift File.expand_path '../lib', File.dirname(__FILE__)
 require 'arduino_firmata'
 require 'args_parser'
+require 'timeout'
 
 parser = ArgsParser.parse ARGV, :style => :equal do
   arg :arduino, 'arduino port', :default => ArduinoFirmata.list[0]
+  arg :list, 'arduino list'
   arg :version, 'show version', :alias => :v
   arg :help, 'show help', :alias => :h
 end
 
 if parser.has_option? :version
   puts "ArduinoFirmata v#{ArduinoFirmata::VERSION}"
+  exit
+end
+
+if parser.has_option? :list
+  ArduinoFirmata.list.each_with_index do |i, index|
+    print "#{index == 0 ? '*' : ' '} "
+    puts i
+  end
   exit
 end
 
