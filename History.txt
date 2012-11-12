@@ -1,3 +1,8 @@
+=== 0.1.5 2012-11-13
+
+* add --list option in arduino_firmata command
+* support Arduino UNO on Linux
+
 === 0.1.4 2012-11-3
 
 * fix arduino_firmata command
