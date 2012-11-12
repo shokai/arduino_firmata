@@ -6,10 +6,6 @@ class TestArduinoFirmata < MiniTest::Unit::TestCase
     @arduino = ArduinoFirmata.connect ENV['ARDUINO']
   end
 
-  def test_arduino_list
-    assert ArduinoFirmata::list.class == Array
-  end
-
   def test_arduino
     assert @arduino.version > '2.0'
     @arduino.close
