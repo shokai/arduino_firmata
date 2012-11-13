@@ -11,6 +11,11 @@ module ArduinoFirmata
     end
   end
 
+  class Status
+    CLOSE = 0
+    OPEN = 1
+  end
+
   INPUT  = 0
   OUTPUT = 1
   ANALOG = 2

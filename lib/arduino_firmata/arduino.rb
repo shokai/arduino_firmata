@@ -2,9 +2,10 @@ module ArduinoFirmata
 
   class Arduino
 
-    attr_reader :version
+    attr_reader :version, :status
 
     def initialize(serial_name, params)
+      @status = Status::CLOSE
       @wait_for_data = 0
       @execute_multi_byte_command = 0
       @multi_byte_channel = 0
@@ -23,25 +24,33 @@ module ArduinoFirmata
       @serial = SerialPort.new(serial_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
       @serial.read_timeout = 3
       sleep 3
+      @status = Status::OPEN
 
       trap 'SIGHUP' do
         close
+        exit
       end
       trap 'SIGINT' do
         close
+        exit
       end
       trap 'SIGKILL' do
         close
+        exit
       end
       trap 'SIGTERM' do
         close
+        exit
       end
 
+      @thread_status = false
       Thread.new{
-        loop do
+        @thread_status = true
+        while status == Status::OPEN do
           process_input
           sleep 0.1
         end
+        @thread_status = false
       }.run
 
       (0...6).each do |i|
@@ -58,11 +67,18 @@ module ArduinoFirmata
         sleep 0.3
       end
       sleep 0.5
-
     end
 
     def close
+      return if status == Status::CLOSE
+      @status = Status::CLOSE
       @serial.close
+      loop do
+        if @serial.closed? and @thread_status != true
+          break
+        end
+        sleep 0.01
+      end
     end
 
     def digital_read(pin)
@@ -108,10 +124,12 @@ module ArduinoFirmata
 
     private
     def write(cmd)
+      return if status == Status::CLOSE
       @serial.write_nonblock cmd.chr
     end
 
     def read
+      return if status == Status::CLOSE
       @serial.read_nonblock 9600 rescue EOFError
     end
 
