@@ -1,3 +1,9 @@
+=== 0.1.6 2012-11-13
+
+* bugfix closing serialport
+* show SerialPort status with ArduinoFirmata#status
+* support Duemillanove on Raspberry Pi(Raspbian)
+
 === 0.1.5 2012-11-13
 
 * add --list option in arduino_firmata command
