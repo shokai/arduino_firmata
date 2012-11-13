@@ -48,7 +48,7 @@ module ArduinoFirmata
         @thread_status = true
         while status == Status::OPEN do
           process_input
-          sleep 0.1
+          sleep 0.01
         end
         @thread_status = false
       }.run
