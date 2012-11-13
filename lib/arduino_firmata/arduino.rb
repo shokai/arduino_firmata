@@ -62,6 +62,7 @@ module ArduinoFirmata
         write 1
       end
 
+      write REPORT_VERSION
       loop do
         break if @version
         sleep 0.3
