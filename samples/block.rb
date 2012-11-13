@@ -7,7 +7,7 @@ ArduinoFirmata.connect ARGV[0] do
   puts "firmata version #{version}"
   led_stat = false
 
-  5.times do
+  3.times do
     digital_write(13, led_stat = !led_stat)
     puts "led : #{led_stat}"
     puts "analog : #{analog_read 0}"
