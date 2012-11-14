@@ -18,4 +18,12 @@ class TestArduinoFirmata < MiniTest::Unit::TestCase
     end
     @arduino.close
   end
+
+  def test_digital_read
+    0.upto(13).each do |pin|
+      din = @arduino.digital_read pin
+      assert [true,false].include? din
+    end
+    @arduino.close
+  end
 end
