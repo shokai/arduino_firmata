@@ -26,6 +26,7 @@ Setup
   
   arduino = ArduinoFirmata.connect  # use default arduino
   arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name'
+  arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name', :bps => 57600
 
 
 Board Version
