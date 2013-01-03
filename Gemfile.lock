@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    arduino_firmata (0.1.6)
+    arduino_firmata (0.1.7)
       args_parser (>= 0.1.2)
       serialport (>= 1.1.0)
 
@@ -9,7 +9,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     args_parser (0.1.2)
-    minitest (4.1.0)
+    minitest (4.3.3)
     serialport (1.1.0)
 
 PLATFORMS
@@ -17,6 +17,4 @@ PLATFORMS
 
 DEPENDENCIES
   arduino_firmata!
-  args_parser
   minitest
-  serialport

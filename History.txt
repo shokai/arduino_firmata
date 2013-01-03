@@ -1,3 +1,7 @@
+=== 0.1.7 2013-01-04
+
+* use bundler gem template
+
 === 0.1.6 2012-11-13
 
 * bugfix closing serialport
