@@ -1,7 +1,7 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem 'hoe'
-gem 'newgem'
+# Specify your gem's dependencies in arduino_firmata.gemspec
+gemspec
 gem 'minitest'
 gem 'serialport'
 gem 'args_parser'
