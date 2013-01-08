@@ -82,6 +82,10 @@ module ArduinoFirmata
       end
     end
 
+    def reset
+      write SYSTEM_RESET
+    end
+
     def digital_read(pin)
       (@digital_input_data[pin >> 3] >> (pin & 0x07)) & 0x01 > 0
     end
