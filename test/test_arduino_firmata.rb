@@ -11,6 +11,14 @@ class TestArduinoFirmata < MiniTest::Unit::TestCase
     @arduino.close
   end
 
+  def test_digital_read
+    0.upto(13).each do |pin|
+      din = @arduino.digital_read pin
+      assert [true,false].include? din
+    end
+    @arduino.close
+  end
+
   def test_analog_read
     0.upto(5).each do |pin|
       ain = @arduino.analog_read pin
@@ -19,11 +27,20 @@ class TestArduinoFirmata < MiniTest::Unit::TestCase
     @arduino.close
   end
 
-  def test_digital_read
+  def test_digital_write
     0.upto(13).each do |pin|
-      din = @arduino.digital_read pin
-      assert [true,false].include? din
+      assert @arduino.digital_write(pin, true) == true
+      assert @arduino.digital_write(pin, false) == false
     end
     @arduino.close
   end
+
+  def test_analog_write
+    0.upto(13).each do |pin|
+      value = rand(256)
+      assert @arduino.analog_write(pin, value) == value
+    end
+    @arduino.close
+  end
+
 end
