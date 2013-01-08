@@ -8,6 +8,6 @@ arduino = ArduinoFirmata.connect ARGV.shift
 loop do
   angle = rand 180
   puts angle
-  arduino.servo_write 11, angle
+  arduino.servo_write 9, angle
   sleep 1
 end
