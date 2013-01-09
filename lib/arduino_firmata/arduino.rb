@@ -139,7 +139,9 @@ module ArduinoFirmata
       pin_mode pin, SERVO
       write(ANALOG_MESSAGE | (pin & 0x0F))
       write(angle & 0x7F)
-      write(angle >> 7)
+      if write(angle >> 7) == 1
+        return angle
+      end
     end
 
     private

@@ -43,6 +43,14 @@ class TestArduinoFirmata < MiniTest::Unit::TestCase
     @arduino.close
   end
 
+  def test_servo_write
+    0.upto(13).each do |pin|
+      angle = rand(181)
+      assert @arduino.servo_write(pin, angle) == angle
+    end
+    @arduino.close
+  end
+
   def test_pin_mode
     0.upto(13).each do |pin|
       mode = [ArduinoFirmata::OUTPUT, ArduinoFirmata::INPUT].sample
