@@ -29,6 +29,7 @@ class TestArduinoFirmata < MiniTest::Unit::TestCase
 
   def test_digital_write
     0.upto(13).each do |pin|
+      @arduino.pin_mode(pin, ArduinoFirmata::OUTPUT)
       assert @arduino.digital_write(pin, true) == true
       assert @arduino.digital_write(pin, false) == false
     end
@@ -39,6 +40,14 @@ class TestArduinoFirmata < MiniTest::Unit::TestCase
     0.upto(13).each do |pin|
       value = rand(256)
       assert @arduino.analog_write(pin, value) == value
+    end
+    @arduino.close
+  end
+
+  def test_pin_mode
+    0.upto(13).each do |pin|
+      mode = [ArduinoFirmata::OUTPUT, ArduinoFirmata::INPUT].sample
+      assert @arduino.pin_mode(pin, mode) == mode
     end
     @arduino.close
   end
