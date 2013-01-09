@@ -10,4 +10,12 @@ class TestBlock < MiniTest::Unit::TestCase
     assert version_ and version_ > '2.0'
   end
 
+  def test_block_analog_read
+    ain = nil
+    ArduinoFirmata.connect ENV['ARDUINO'] do
+      ain = analog_read 0
+    end
+    assert 0 <= ain and ain < 1024
+  end
+
 end
