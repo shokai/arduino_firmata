@@ -97,7 +97,17 @@ module ArduinoFirmata
     def pin_mode(pin, mode)
       write SET_PIN_MODE
       write pin
-      write mode
+      mode = case mode
+             when true
+               OUTPUT
+             when false
+               INPUT
+             else
+               mode
+             end
+      if write(mode) == 1
+        return mode
+      end
     end
 
     def digital_write(pin, value)
