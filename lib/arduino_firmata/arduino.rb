@@ -120,14 +120,18 @@ module ArduinoFirmata
 
       write(DIGITAL_MESSAGE | port_num)
       write(@digital_output_data[port_num] & 0x7F)
-      write(@digital_output_data[port_num] >> 7)
+      if write(@digital_output_data[port_num] >> 7) == 1
+        return value
+      end
     end
 
     def analog_write(pin, value)
       pin_mode pin, PWM
       write(ANALOG_MESSAGE | (pin & 0x0F))
       write(value & 0x7F)
-      write(value >> 7)
+      if write(value >> 7) == 1
+        return value
+      end
     end
 
     def servo_write(pin, angle)
