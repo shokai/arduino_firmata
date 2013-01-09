@@ -7,6 +7,7 @@ arduino = ArduinoFirmata.connect ARGV.shift
 puts "firmata version #{arduino.version}"
 
 arduino.pin_mode 13, ArduinoFirmata::OUTPUT
+
 stat = true
 loop do
   puts stat

@@ -29,7 +29,6 @@ class TestArduinoFirmata < MiniTest::Unit::TestCase
 
   def test_digital_write
     0.upto(13).each do |pin|
-      @arduino.pin_mode(pin, ArduinoFirmata::OUTPUT)
       assert @arduino.digital_write(pin, true) == true
       assert @arduino.digital_write(pin, false) == false
     end
