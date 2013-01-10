@@ -1,3 +1,8 @@
+=== 0.1.8 2013-01-11
+
+* add tests
+* add function Arduino::reset
+
 === 0.1.7 2013-01-04
 
 * use bundler gem template
