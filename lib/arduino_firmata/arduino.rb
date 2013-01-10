@@ -86,6 +86,20 @@ module ArduinoFirmata
       write SYSTEM_RESET
     end
 
+    def sysex_write(command, data)
+      ## http://firmata.org/wiki/V2.1ProtocolDetails#Sysex_Message_Format
+      raise ArgumentError, 'command must be Number' unless command.kind_of? Fixnum
+      raise ArgumentError, 'data must be 7bit-Number or Those Array' unless [Fixnum, Array].include? data.class
+
+      write_data = data.kind_of?(Array) ? data : [data]
+      write START_SYSEX
+      write command
+      write_data.each do |d|
+        write (d & 0b1111111) # 7bit
+      end
+      write END_SYSEX
+    end
+
     def digital_read(pin)
       (@digital_input_data[pin >> 3] >> (pin & 0x07)) & 0x01 > 0
     end
