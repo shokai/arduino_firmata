@@ -14,6 +14,7 @@
   Copyright (C) 2010-2011 Paul Stoffregen.  All rights reserved.
   Copyright (C) 2009 Shigeru Kobayashi.  All rights reserved.
   Copyright (C) 2009-2011 Jeff Hoefs.  All rights reserved.
+  Copyright (C) 2013 Sho Hashimoto.  All rights reserved.
   
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -330,6 +331,23 @@ void sysexCallback(byte command, byte argc, byte *argv)
   unsigned int delayTime; 
   
   switch(command) {
+  case 0x01: // LED Blink Command
+    if(argc < 3) break;
+    byte blink_pin;
+    byte blink_count;
+    blink_pin = argv[0];
+    blink_count = argv[1];
+    delayTime = argv[2] * 100;
+
+    pinMode(blink_pin, OUTPUT);
+    byte i;
+    for(i = 0; i < blink_count; i++){
+      digitalWrite(blink_pin, true);
+      delay(delayTime);
+      digitalWrite(blink_pin, false);
+      delay(delayTime);
+    }
+    break;
   case I2C_REQUEST:
     mode = argv[1] & I2C_READ_WRITE_MODE_MASK;
     if (argv[1] & I2C_10BIT_ADDRESS_MODE_MASK) {
