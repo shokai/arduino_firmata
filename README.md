@@ -93,6 +93,10 @@ ArduinoFirmata.connect do
 end
 ```
 
+Sysex Command
+```ruby
+arduino.send_sysex 0x01, [13, 5, 2]
+```
 
 see samples https://github.com/shokai/arduino_firmata/tree/master/samples
 
