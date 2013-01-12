@@ -5,9 +5,11 @@ require 'arduino_firmata'
 
 arduino = ArduinoFirmata.connect ARGV.shift
 
-arduino.on_analog_changed 0 do |value|
-  puts "analog pin 0 changed #{value}"
-  arduino.analog_write 11, value
+arduino.on :analog_read do |pin, value|
+  if pin == 0
+    puts "analog pin #{pin} changed #{value}"
+    arduino.analog_write 11, value
+  end
 end
 
 led_stat = false

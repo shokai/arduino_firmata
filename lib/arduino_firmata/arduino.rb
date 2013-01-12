@@ -20,7 +20,6 @@ module ArduinoFirmata
 
       @version = nil
 
-      @on_analog_changed = []
       @on_sysex_received = []
 
       @serial = SerialPort.new(serial_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
@@ -195,7 +194,7 @@ module ArduinoFirmata
             when ANALOG_MESSAGE
               analog_value = (@stored_input_data[0] << 7) + @stored_input_data[1]
               unless @analog_input_data[@multi_byte_channel] == analog_value
-                on_analog_changed @multi_byte_channel, analog_value
+                emit :analog_read, @multi_byte_channel, analog_value
               end
               @analog_input_data[@multi_byte_channel] = analog_value
             when REPORT_VERSION
