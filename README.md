@@ -14,10 +14,11 @@ Install
 Requirements
 ------------
 
+* Ruby 1.8.7+ or 1.9.2+
+* Arduino (http://arduino.cc)
+  * testing on Duemillanove, UNO, Micro, Seeduino v2.
 * Arduino Standard Firmata v2.2
   * Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
-* Ruby 1.8.7+
-* Ruby 1.9.2+
 
 
 Synopsis
