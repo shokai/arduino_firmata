@@ -36,23 +36,29 @@
 </p>
 
 
-<h2>INSTALL:</h2>
-
+<h2>INSTALL</h2>
 <pre><code>% gem install arduino_firmata
 </code></pre>
 
-<h2>REQUIREMENTS:</h2>
-
+<h2>REQUIREMENTS</h2>
 <ul>
-<li>Ruby 1.8.7+</li>
-<li>Ruby 1.9.2+</li>
-<li>Arduino Standard Firmata v2.2</li>
-</ul><p>Arduino IDE -&gt; [File] -&gt; [Examples] -&gt; [Firmata] -&gt; [StandardFirmata]</p>
+<li>Ruby 1.8.7+ or 1.9.2+</li>
+<li><a href="http://arduino.cc/">Arduino</a></li>
+<li>
+  Arduino Standard Firmata v2.2
+  <ul><li>Arduino IDE -&gt; [File] -&gt; [Examples] -&gt; [Firmata] -&gt; [StandardFirmata]</li></ul>
+</li>
+</ul>
 
-<h2>SYNOPSIS:</h2>
+<h2>Sample Code</h2>
+<ul>
+<li><a href="https://github.com/shokai/arduino_firmata/tree/master/samples">https://github.com/shokai/arduino_firmata/tree/master/samples</a></li>
+<li>Tweet temperature just 9 lines.</li>
+<li>Controll Arduino on Sinatra 20 lines.</li>
+</ul>
 
-<h3>Setup</h3>
-
+<h2>Setup</h2>
+<h3>Connect</h3>
 <div class="highlight"><pre><span class="n">require</span> <span class="s">&quot;rubygems&quot;</span>
 <span class="n">require</span> <span class="s">&quot;arduino_firmata&quot;</span>
 
@@ -61,10 +67,15 @@
 </pre></div>
 
 <h3>Board Version</h3>
-
 <div class="highlight"><pre><span class="nb">puts</span> <span class="s2">"firmata version </span><span class="si">#{</span><span class="n">arduino</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span>
 </pre></div>
 
+<h3>Close</h3>
+<div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">close</span>
+</pre></div>
+
+
+<h2>I/O</h2>
 <h3>Digital Write</h3>
 on board Yellow LED
 <div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">digital_write</span> <span class="mi">13</span><span class="p">,</span> <span class="kp">true</span>
@@ -72,13 +83,11 @@ on board Yellow LED
 </pre></div>
 
 <h3>Digital Read</h3>
-
 <div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">pin_mode</span> <span class="mi">7</span><span class="p">,</span> <span class="no">ArduinoFirmata</span><span class="o">::</span><span class="no">INPUT</span>
 <span class="nb">puts</span> <span class="n">arduino</span><span class="o">.</span><span class="n">digital_read</span> <span class="mi">7</span>  <span class="c1"># =&gt; true/false</span>
 </pre></div>
 
 <h3>Analog Write (PWM)</h3>
-
 <div class="highlight"><pre><span class="mi">0</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
   <span class="n">arduino</span><span class="o">.</span><span class="n">analog_write</span> <span class="mi">11</span><span class="p">,</span> <span class="n">i</span>  <span class="c1"># &lt;= 0 ~ 255</span>
   <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mo">01</span>
@@ -92,37 +101,47 @@ Digital 11 PIN -&gt; LED -&gt; GND
 <h3>Analog Read</h3>
 <div class="highlight"><pre><span class="nb">puts</span> <span class="n">arduino</span><span class="o">.</span><span class="n">analog_read</span> <span class="mi">0</span>  <span class="c1"># =&gt; 0 ~ 1023</span>
 
-<span class="n">arduino</span><span class="o">.</span><span class="n">on_analog_changed</span> <span class="mi">0</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>
-  <span class="nb">puts</span> <span class="n">value</span>  <span class="c1"># =&gt; 0 ~ 1023</span>
-<span class="k">end</span>
-</pre></div>
+<span class="n">arduino</span><span class="p">.</span><span class="n">on</span> <span class="s">:analog_read</span> <span class="mi">0</span> <span class="k">do</span> <span class="p">|</span><span class="n">pin</span><span class="p">,</span> <span class="n">value</span><span class="p">|</span> <span class="c1"># analog_read event</span>
+  <span class="k">if</span> <span class="n">pin</span> <span class="p">==</span> <span class="mi">0</span>
+    <span class="nb">puts</span> <span class="s">&quot;analog pin #{</span><span class="n">pin</span><span class="s">} changed #{</span><span class="n">value</span><span class="s">}&quot;</span>
+  <span class="n">end</span>
+<span class="n">end</span></pre></div>
 <p>
 GND &amp; 5V -&gt; CdS &amp; 10kΩ -&gt;  Analog 0 PIN
 <img src="./images/analog_read.jpg" />
 </p>
 
-
 <h3>Servo Motor</h3>
 <div class="highlight"><pre><span class="n">loop</span> <span class="k">do</span>
   <span class="n">angle</span> <span class="p">=</span> <span class="n">rand</span> <span class="mi">180</span>
   <span class="n">puts</span> <span class="s">&quot;servo angle #{</span><span class="n">angle</span><span class="s">}&quot;</span>
-  <span class="n">arduino</span><span class="p">.</span><span class="n">servo_write</span> <span class="mi">11</span><span class="p">,</span> <span class="n">angle</span>
+  <span class="n">arduino</span><span class="p">.</span><span class="n">servo_write</span> <span class="mi">9</span><span class="p">,</span> <span class="n">angle</span>
   <span class="n">sleep</span> <span class="mi">1</span>
 <span class="n">end</span>
 </pre></div>
 <p>
-VCC, GND and Digital 11 PIN -&gt; Servo Motor
+VCC, GND and Digital 9 PIN -&gt; Servo Motor
 </p>
 
 
+<h2>Sysex</h2>
+<ul>
+<li><a href="http://firmata.org/wiki/V2.1ProtocolDetails#Sysex_Message_Format">http://firmata.org/wiki/V2.1ProtocolDetails#Sysex_Message_Format</a></li>
+<li><a href="https://github.com/shokai/arduino_firmata/tree/master/samples/sysex">https://github.com/shokai/arduino_firmata/tree/master/samples/sysex</a></li>
+</ul>
 
-<h3>Close</h3>
-
-<div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">close</span>
+<h3>Send</h3>
+<div class="highlight"><pre><span class="n">arduino</span><span class="p">.</span><span class="n">sysex</span> <span class="mh">0x01</span><span class="p">,</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># command, data_array</span>
 </pre></div>
 
-<h3>Block</h3>
+<h3>Receive Event</h3>
+<div class="highlight"><pre><span class="n">arduino</span><span class="p">.</span><span class="n">on</span> <span class="s">:sysex</span> <span class="k">do</span> <span class="p">|</span><span class="n">command</span><span class="p">,</span> <span class="n">data</span><span class="p">|</span>
+  <span class="nb">puts</span> <span class="s">&quot;command : #{</span><span class="n">command</span><span class="s">}&quot;</span>
+  <span class="nb">puts</span> <span class="s">&quot;data    : #{</span><span class="n">data.inspect</span><span class="s">}&quot;</span> <span class="c1"># data_array</span>
+<span class="n">end</span>
+</pre></div>
 
+<h2>Block Style</h2>
 <div class="highlight"><pre><span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span> <span class="k">do</span>
   <span class="nb">puts</span> <span class="s2">"firmata version </span><span class="si">#{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span>
 
@@ -134,13 +153,6 @@ VCC, GND and Digital 11 PIN -&gt; Servo Motor
 <span class="k">end</span>
 </pre></div>
 
-<h3>More Samples</h3>
-
-<ul>
-<li>Tweet temperature just 9 lines.</li>
-<li>Controll Arduino on Sinatra 20 lines.</li>
-<li><a href="https://github.com/shokai/arduino_firmata/tree/master/samples">https://github.com/shokai/arduino_firmata/tree/master/samples</a></li>
-</ul>
         </section>
 
         <aside id="sidebar">
