@@ -1,3 +1,7 @@
+=== 0.2.2 2013-01-13
+
+* fix readme
+
 === 0.2.1 2013-01-13
 
 * add digital_read event - Arduino::on(:digital_read, pin, status)
