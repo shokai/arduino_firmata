@@ -20,8 +20,6 @@ module ArduinoFirmata
 
       @version = nil
 
-      @on_sysex_received = []
-
       @serial = SerialPort.new(serial_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
       @serial.read_timeout = 3
       sleep 3
@@ -179,7 +177,7 @@ module ArduinoFirmata
             @parsing_sysex = false
             sysex_command = @stored_input_data[0]
             sysex_data = @stored_input_data[1..@sysex_bytes_read]
-            on_sysex_received sysex_command, sysex_data
+            emit :sysex, sysex_command, sysex_data
           else
             @stored_input_data[@sysex_bytes_read] = input_data
             @sysex_bytes_read += 1

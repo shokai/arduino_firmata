@@ -6,8 +6,8 @@ require 'arduino_firmata'
 arduino = ArduinoFirmata.connect ARGV.shift
 puts "firmata version #{arduino.version}"
 
-arduino.on_sysex_received(0x01) do |data|
-  puts "command : 0x01"
+arduino.on :sysex do |command, data|
+  puts "command : #{command}"
   puts "data    : #{data.inspect}"
 end
 
