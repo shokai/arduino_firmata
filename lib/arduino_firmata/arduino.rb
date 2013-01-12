@@ -188,7 +188,14 @@ module ArduinoFirmata
           if @execute_multi_byte_command != 0 and @wait_for_data == 0
             case @execute_multi_byte_command
             when DIGITAL_MESSAGE
+              digital_inputs = @digital_input_data.clone
               @digital_input_data[@multi_byte_channel] = (@stored_input_data[0] << 7) + @stored_input_data[1]
+              0.upto(15).each do |i|
+                current = digital_read i
+                if current != ((digital_inputs[i >> 3] >> (i & 0x07)) & 0x01 > 0)
+                  emit :digital_read, i, current
+                end
+              end
             when ANALOG_MESSAGE
               analog_value = (@stored_input_data[0] << 7) + @stored_input_data[1]
               unless @analog_input_data[@multi_byte_channel] == analog_value

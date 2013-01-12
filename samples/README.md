@@ -7,6 +7,7 @@ Digital/Analog IO
 - led_blink.rb
 - led_fade.rb
 - on_analog_read.rb
+- on_digital_read.rb
 - servo.rb
 
 

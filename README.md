@@ -60,6 +60,12 @@ Digital Read
 ```ruby
 arduino.pin_mode 7, ArduinoFirmata::INPUT
 puts arduino.digital_read 7  # => true/false
+
+arduino.on :digital_read do |pin, status|
+  if pin == 7
+    puts "digital pin #{pin} changed : #{status}"
+  end
+end
 ```
 
 Analog Write (PWM)
@@ -76,7 +82,7 @@ puts arduino.analog_read 0  # => 0 ~ 1023
 
 arduino.on :analog_read 0 do |pin, value|
   if pin == 0
-    puts "analog pin #{pin} changed #{value}"
+    puts "analog pin #{pin} changed : #{value}"
   end
 end
 ```
