@@ -61,8 +61,10 @@ Analog Read
 ```ruby
 puts arduino.analog_read 0  # => 0 ~ 1023
 
-arduino.on_analog_changed 0 do |value|
-  puts value  # => 0 ~ 1023
+arduino.on :analog_read 0 do |pin, value|
+  if pin == 0
+    puts "analog pin #{pin} changed #{value}"
+  end
 end
 ```
 
@@ -93,13 +95,15 @@ ArduinoFirmata.connect do
 end
 ```
 
-Sysex Command
+Send Sysex Command
 ```ruby
-arduino.send_sysex 0x01, [13, 5, 2]
+arduino.sysex 0x01, [13, 5, 2]
 ```
+
+Regist Sysex Command Event
 ```ruby
-arduino.on_sysex_received(0x01) do |data|
-  puts "command : 0x01"
+arduino.on :sysex do |command, data|
+  puts "command : #{command}"
   puts "data    : #{data.inspect}"
 end
 ```
