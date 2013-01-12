@@ -97,6 +97,12 @@ Sysex Command
 ```ruby
 arduino.send_sysex 0x01, [13, 5, 2]
 ```
+```ruby
+arduino.on_sysex_received(0x01) do |data|
+  puts "command : 0x01"
+  puts "data    : #{data.inspect}"
+end
+```
 
 see samples https://github.com/shokai/arduino_firmata/tree/master/samples
 
