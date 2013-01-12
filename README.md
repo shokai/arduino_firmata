@@ -80,7 +80,7 @@ Analog Read
 ```ruby
 puts arduino.analog_read 0  # => 0 ~ 1023
 
-arduino.on :analog_read 0 do |pin, value|
+arduino.on :analog_read do |pin, value|
   if pin == 0
     puts "analog pin #{pin} changed : #{value}"
   end
