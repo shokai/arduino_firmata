@@ -34,6 +34,7 @@ void sysexCallback(byte command, byte argc, byte*argv)
       digitalWrite(blink_pin, false);
       delay(delayTime);
     }
+    Firmata.sendSysex(command, argc, argv); // callback
     break;
   }
 }

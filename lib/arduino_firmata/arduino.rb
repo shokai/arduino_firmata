@@ -11,7 +11,7 @@ module ArduinoFirmata
       @multi_byte_channel = 0
       @stored_input_data = []
       @parsing_sysex = false
-      @sysex_bytes_read = nil
+      @sysex_bytes_read = 0
 
       @digital_output_data = Array.new(16, 0)
       @digital_input_data = Array.new(16, 0)
@@ -20,6 +20,7 @@ module ArduinoFirmata
       @version = nil
 
       @on_analog_changed = []
+      @on_sysex_received = []
 
       @serial = SerialPort.new(serial_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
       @serial.read_timeout = 3
@@ -175,7 +176,10 @@ module ArduinoFirmata
 
         if @parsing_sysex
           if input_data == END_SYSEX
-            @parsing_sysex = FALSE
+            @parsing_sysex = false
+            sysex_command = @stored_input_data[0]
+            sysex_data = @stored_input_data[1..@sysex_bytes_read]
+            on_sysex_received sysex_command, sysex_data
           else
             @stored_input_data[@sysex_bytes_read] = input_data
             @sysex_bytes_read += 1
@@ -204,7 +208,10 @@ module ArduinoFirmata
           else
             command = input_data
           end
-          if [DIGITAL_MESSAGE, ANALOG_MESSAGE, REPORT_VERSION].include? command
+          if command == START_SYSEX
+            @parsing_sysex = true
+            @sysex_bytes_read = 0
+          elsif [DIGITAL_MESSAGE, ANALOG_MESSAGE, REPORT_VERSION].include? command
             @wait_for_data = 2
             @execute_multi_byte_command = command
           end

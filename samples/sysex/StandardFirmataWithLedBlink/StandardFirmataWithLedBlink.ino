@@ -347,6 +347,7 @@ void sysexCallback(byte command, byte argc, byte *argv)
       digitalWrite(blink_pin, false);
       delay(delayTime);
     }
+    Firmata.sendSysex(command, argc, argv); // callback
     break;
   case I2C_REQUEST:
     mode = argv[1] & I2C_READ_WRITE_MODE_MASK;
