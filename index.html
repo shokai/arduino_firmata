@@ -86,7 +86,12 @@ on board Yellow LED
 <h3>Digital Read</h3>
 <div class="highlight"><pre><span class="n">arduino</span><span class="o">.</span><span class="n">pin_mode</span> <span class="mi">7</span><span class="p">,</span> <span class="no">ArduinoFirmata</span><span class="o">::</span><span class="no">INPUT</span>
 <span class="nb">puts</span> <span class="n">arduino</span><span class="o">.</span><span class="n">digital_read</span> <span class="mi">7</span>  <span class="c1"># =&gt; true/false</span>
-</pre></div>
+
+<span class="n">arduino</span><span class="p">.</span><span class="n">on</span> <span class="s">:digital_read</span> <span class="k">do</span> <span class="p">|</span><span class="n">pin</span><span class="p">,</span> <span class="n">status</span><span class="p">|</span> <span class="c1"># digital_read event</span>
+  <span class="k">if</span> <span class="n">pin</span> <span class="p">==</span> <span class="mi">7</span>
+    <span class="nb">puts</span> <span class="s">&quot;digital pin #{</span><span class="n">pin</span><span class="s">} changed : #{</span><span class="n">status</span><span class="s">}&quot;</span>
+  <span class="n">end</span>
+<span class="n">end</span></pre></div>
 
 <h3>Analog Write (PWM)</h3>
 <div class="highlight"><pre><span class="mi">0</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
