@@ -1,6 +1,7 @@
 module ArduinoFirmata
 
   class Arduino
+    include EventEmitter
 
     attr_reader :version, :status
 
