@@ -23,7 +23,11 @@ Requirements
 Synopsis
 --------
 
-Setup
+- https://github.com/shokai/arduino_firmata/tree/master/samples
+
+### Setup
+
+Connect
 ```ruby
 require 'arduino_firmata'
 
@@ -36,6 +40,14 @@ Board Version
 ```ruby
 puts "firmata version #{arduino.version}"
 ```
+
+Close
+```ruby
+arduino.close
+```
+
+
+### I/O
 
 Digital Write
 ```ruby
@@ -77,12 +89,28 @@ loop do
 end
 ```
 
-Close
+
+### Sysex
+
+- http://firmata.org/wiki/V2.1ProtocolDetails#Sysex_Message_Format
+- https://github.com/shokai/arduino_firmata/tree/master/samples/sysex
+
+Send
 ```ruby
-arduino.close
+arduino.sysex 0x01, [13, 5, 2]  # command, data_array
 ```
 
-Block
+Regist Receive Event
+```ruby
+arduino.on :sysex do |command, data|
+  puts "command : #{command}"
+  puts "data    : #{data.inspect}"
+end
+```
+
+
+### Block Style
+
 ```ruby
 ArduinoFirmata.connect do
   puts "firmata version #{version}"
@@ -94,22 +122,6 @@ ArduinoFirmata.connect do
   end
 end
 ```
-
-Send Sysex Command
-```ruby
-arduino.sysex 0x01, [13, 5, 2]
-```
-
-Regist Sysex Command Event
-```ruby
-arduino.on :sysex do |command, data|
-  puts "command : #{command}"
-  puts "data    : #{data.inspect}"
-end
-```
-
-see samples https://github.com/shokai/arduino_firmata/tree/master/samples
-
 
 Test
 ----
