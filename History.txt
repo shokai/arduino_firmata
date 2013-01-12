@@ -1,3 +1,7 @@
+=== 0.2.1 2013-01-13
+
+* add digital_read event - Arduino::on(:digital_read, pin, status)
+
 === 0.2.0 2013-01-12
 
 * Sysex Command support
