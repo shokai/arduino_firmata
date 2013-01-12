@@ -85,7 +85,7 @@ module ArduinoFirmata
       write SYSTEM_RESET
     end
 
-    def send_sysex(command, data)
+    def sysex(command, data)
       ## http://firmata.org/wiki/V2.1ProtocolDetails#Sysex_Message_Format
       raise ArgumentError, 'command must be Number' unless command.kind_of? Fixnum
       raise ArgumentError, 'data must be 7bit-Number or Those Array' unless [Fixnum, Array].include? data.class
