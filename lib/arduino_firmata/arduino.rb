@@ -169,7 +169,7 @@ module ArduinoFirmata
     end
 
     def process_input
-      StringIO.new(String read).bytes.each do |input_data|
+      StringIO.new(String read).each_byte.each do |input_data|
         command = nil
 
         if @parsing_sysex
