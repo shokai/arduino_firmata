@@ -14,7 +14,7 @@ Install
 Requirements
 ------------
 
-* Ruby 1.8.7+ or 1.9.2+
+* Ruby 1.8.7 or 1.9.2 or 1.9.3 or 2.0.0
 * Arduino (http://arduino.cc)
   * testing with Arduino Duemillanove, UNO, Micro, Seeduino v2.
 * Arduino Standard Firmata v2.2
