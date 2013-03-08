@@ -1,3 +1,7 @@
+=== 0.2.4 2013-03-08
+
+* use StringIO#each_byte for Ruby2.0.0
+
 === 0.2.3 2013-01-23
 
 * fix sysex command
