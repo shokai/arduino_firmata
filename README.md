@@ -21,6 +21,16 @@ Requirements
   * Arduino IDE -> [File] -> [Examples] -> [Firmata] -> [StandardFirmata]
 
 
+ArduinoFirmata Command
+----------------------
+
+    % arduino_firmata --help
+    % arduino_firmata --list
+    % arduino_firmata digital_write 13, true
+    % arduino_firmata analog_read 0
+    % arduino_firmata servo_write 9, 145
+
+
 Synopsis
 --------
 
