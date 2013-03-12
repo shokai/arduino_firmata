@@ -160,12 +160,12 @@ module ArduinoFirmata
     private
     def write(cmd)
       return if status == Status::CLOSE
-      @serial.write_nonblock cmd.chr
+      @serial.write cmd.chr
     end
 
     def read
       return if status == Status::CLOSE
-      @serial.read_nonblock 9600 rescue EOFError
+      @serial.read 9600 rescue EOFError
     end
 
     def process_input
