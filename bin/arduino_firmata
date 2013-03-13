@@ -43,6 +43,6 @@ rescue StandardError, Timeout::Error => e
   exit 1
 end
 
-print arduino.instance_eval parser.argv.join(' ')
+print arduino.instance_eval(parser.argv.join(' '))
 sleep 1
 arduino.close
