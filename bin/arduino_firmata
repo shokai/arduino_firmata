@@ -45,3 +45,4 @@ end
 
 print arduino.instance_eval parser.argv.join(' ')
 sleep 1
+arduino.close
