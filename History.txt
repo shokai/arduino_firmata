@@ -1,3 +1,7 @@
+=== 0.2.6 2013-03-13
+
+* select blocking/nonblocking IO on connect
+
 === 0.2.5 2013-03-13
 
 * add sysex command test
