@@ -6,7 +6,8 @@ module ArduinoFirmata
         :bps => 57600,
         :bit => 8,
         :parity => 0,
-        :stopbit => 1
+        :stopbit => 1,
+        :nonblock_io => false
       }
     end
   end

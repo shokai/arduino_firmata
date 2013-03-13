@@ -3,9 +3,10 @@ module ArduinoFirmata
   class Arduino
     include EventEmitter
 
-    attr_reader :version, :status
+    attr_reader :version, :status, :nonblock_io
 
     def initialize(serial_name, params)
+      @nonblock_io = !!params[:nonblock_io]
       @status = Status::CLOSE
       @wait_for_data = 0
       @execute_multi_byte_command = 0
@@ -160,12 +161,22 @@ module ArduinoFirmata
     private
     def write(cmd)
       return if status == Status::CLOSE
-      @serial.write cmd.chr
+      if nonblock_io
+        puts 'nonblock write'
+        @serial.write_nonblock cmd.chr
+      else
+        @serial.write cmd.chr
+      end
     end
 
     def read
       return if status == Status::CLOSE
-      @serial.read 9600 rescue EOFError
+      if nonblock_io
+        puts 'nonblock read'
+        @serial.read_nonblock 9600 rescue EOFError
+      else
+        @serial.read 9600 rescue EOFError
+      end
     end
 
     def process_input

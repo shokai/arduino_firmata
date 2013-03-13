@@ -4,7 +4,8 @@ require 'rubygems'
 require 'sinatra'
 require 'arduino_firmata'
 
-arduino = ArduinoFirmata.connect
+# arduino = ArduinoFirmata.connect
+arduino = ArduinoFirmata.connect nil, :nonblock_io => true
 
 get '/' do
   redirect './on'
