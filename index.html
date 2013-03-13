@@ -37,18 +37,26 @@
 
 
 <h2>INSTALL</h2>
-<pre><code>% gem install arduino_firmata
-</code></pre>
+<pre><code>% gem install arduino_firmata</code></pre>
 
 <h2>REQUIREMENTS</h2>
 <ul>
-<li>Ruby 1.8.7+ or 1.9.2+</li>
-<li><a href="http://arduino.cc/">Arduino</a></li>
+<li>Ruby 1.8.7 or 1.9.2 or 1.9.3 or 2.0.0
+<li>testing with <a href="http://arduino.cc/">Arduino</a> Duemillanove, UNO, Leonardo, Micro, Seeduino v2</li>
+</li>
 <li>
   Arduino Standard Firmata v2.2
   <ul><li>Arduino IDE -&gt; [File] -&gt; [Examples] -&gt; [Firmata] -&gt; [StandardFirmata]</li></ul>
 </li>
 </ul>
+
+
+<h2>ArduinoFirmata Command</h2>
+<pre><code>% arduino_firmata --help
+% arduino_firmata --list
+% arduino_firmata digital_write 13, true
+% arduino_firmata analog_read 0
+% arduino_firmata servo_write 9, 145</code></pre>
 
 <h2>Sample Code</h2>
 <ul>
@@ -65,6 +73,7 @@
 <span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span>  <span class="c1"># use default arduino</span>
 <span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span> <span class="s1">"/dev/tty.usb-device-name"</span>
 <span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span> <span class="s1">"/dev/tty.usb-device-name"</span><span class="n">,</span> <span class="s">:bps</span> <span class="n">=&gt;</span> <span class="mi">57600</span>
+<span class="n">arduino</span> <span class="o">=</span> <span class="no">ArduinoFirmata</span><span class="o">.</span><span class="n">connect</span> <span class="s1">"/dev/tty.usb-device-name"</span><span class="n">,</span> <span class="s">:nonblock_io</span> <span class="n">=&gt;</span> <span class="s">true</span>
 </pre></div>
 
 <h3>Board Version</h3>
