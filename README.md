@@ -143,6 +143,13 @@ end
 Test
 ----
 
+### Install SysexLedBlinkFirmata into Arduino
+
+* https://github.com/shokai/arduino_firmata/blob/master/samples/sysex/StandardFirmataWithLedBlink/StandardFirmataWithLedBlink.ino
+
+
+### Run Test
+
     % gem install bundler
     % bundle install
     % export ARDUINO=/dev/tty.usb-device-name
