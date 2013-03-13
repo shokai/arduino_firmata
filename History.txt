@@ -1,3 +1,8 @@
+=== 0.2.5 2013-03-13
+
+* add sysex command test
+* disable non-blocking IO
+
 === 0.2.4 2013-03-08
 
 * use StringIO#each_byte for Ruby2.0.0
