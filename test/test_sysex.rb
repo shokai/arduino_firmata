@@ -15,14 +15,14 @@ class TestSysex < MiniTest::Unit::TestCase
   def test_sysex_command
     __cmd = nil
     __data = nil
-    @arduino.on :sysex do |command, data|
-      __cmd = command
+    @arduino.on :sysex do |cmd, data|
+      __cmd = cmd
       __data = data
     end
 
     @arduino.sysex 0x01, [13, 3, 2]
 
-    50.times do
+    100.times do
       sleep 0.1
       break if __cmd != nil
     end
