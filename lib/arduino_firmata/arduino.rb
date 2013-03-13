@@ -162,7 +162,6 @@ module ArduinoFirmata
     def write(cmd)
       return if status == Status::CLOSE
       if nonblock_io
-        puts 'nonblock write'
         @serial.write_nonblock cmd.chr
       else
         @serial.write cmd.chr
@@ -172,7 +171,6 @@ module ArduinoFirmata
     def read
       return if status == Status::CLOSE
       if nonblock_io
-        puts 'nonblock read'
         @serial.read_nonblock 9600 rescue EOFError
       else
         @serial.read 9600 rescue EOFError
