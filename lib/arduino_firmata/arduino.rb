@@ -44,14 +44,14 @@ module ArduinoFirmata
       end
 
       @thread_status = false
-      Thread.new{
+      Thread.new do
         @thread_status = true
         while status == Status::OPEN do
           process_input
-          sleep 0.01
+          sleep 0.0001
         end
         @thread_status = false
-      }.run
+      end
 
       (0...6).each do |i|
         write(REPORT_ANALOG | i)
@@ -171,9 +171,9 @@ module ArduinoFirmata
     def read
       return if status == Status::CLOSE
       if nonblock_io
-        @serial.read_nonblock 9600 rescue EOFError
+        @serial.read_nonblock 256 rescue EOFError
       else
-        @serial.read 9600 rescue EOFError
+        @serial.read 256 rescue EOFError
       end
     end
 
