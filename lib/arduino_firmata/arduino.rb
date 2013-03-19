@@ -3,10 +3,13 @@ module ArduinoFirmata
   class Arduino
     include EventEmitter
 
-    attr_reader :version, :status, :nonblock_io
+    attr_reader :version, :status, :nonblock_io, :eventmachine
 
     def initialize(serial_name, params)
       @nonblock_io = !!params[:nonblock_io]
+      @eventmachine = !!params[:eventmachine]
+      @read_byte_size = eventmachine ? 256 : 9600
+      @process_input_interval = eventmachine ? 0.0001 : 0.01
       @status = Status::CLOSE
       @wait_for_data = 0
       @execute_multi_byte_command = 0
@@ -44,11 +47,11 @@ module ArduinoFirmata
       end
 
       @thread_status = false
-      Thread.new do
+      run do
         @thread_status = true
         while status == Status::OPEN do
           process_input
-          sleep 0.0001
+          sleep @process_input_interval
         end
         @thread_status = false
       end
@@ -68,6 +71,15 @@ module ArduinoFirmata
         sleep 0.3
       end
       sleep 0.5
+    end
+
+    def run(&block)
+      return unless block_given?
+      if eventmachine
+        EM::defer &block
+      else
+        Thread.new &block
+      end
     end
 
     def close
@@ -171,9 +183,9 @@ module ArduinoFirmata
     def read
       return if status == Status::CLOSE
       if nonblock_io
-        @serial.read_nonblock 256 rescue EOFError
+        @serial.read_nonblock @read_byte_size rescue EOFError
       else
-        @serial.read 256 rescue EOFError
+        @serial.read @read_byte_size rescue EOFError
       end
     end
 

@@ -7,7 +7,8 @@ module ArduinoFirmata
         :bit => 8,
         :parity => 0,
         :stopbit => 1,
-        :nonblock_io => false
+        :nonblock_io => false,
+        :eventmachine => false
       }
     end
   end
