@@ -46,6 +46,7 @@ arduino = ArduinoFirmata.connect  # use default arduino
 arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name'
 arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name', :bps => 57600
 arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name', :nonblock_io => true
+arduino = ArduinoFirmata.connect '/dev/tty.usb-device-name', :eventmachine => true
 ```
 
 Board Version
