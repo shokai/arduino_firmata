@@ -1,3 +1,7 @@
+=== 0.2.7 2013-03-20
+
+* select Thread/EventMachine on connect
+
 === 0.2.6 2013-03-13
 
 * select blocking/nonblocking IO on connect

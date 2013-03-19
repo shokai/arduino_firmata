@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    arduino_firmata (0.2.6)
+    arduino_firmata (0.2.7)
       args_parser (>= 0.1.2)
       event_emitter (>= 0.2.2)
       serialport (>= 1.1.0)
@@ -12,7 +12,7 @@ GEM
     args_parser (0.1.4)
     backports (3.1.1)
     event_emitter (0.2.3)
-    minitest (4.6.2)
+    minitest (4.7.0)
     serialport (1.1.0)
 
 PLATFORMS
