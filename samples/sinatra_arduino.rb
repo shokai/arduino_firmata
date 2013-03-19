@@ -2,10 +2,11 @@
 $:.unshift File.expand_path '../lib', File.dirname(__FILE__)
 require 'rubygems'
 require 'sinatra'
+require 'eventmachine'
 require 'arduino_firmata'
 
 # arduino = ArduinoFirmata.connect
-arduino = ArduinoFirmata.connect nil, :nonblock_io => true
+arduino = ArduinoFirmata.connect nil, :nonblock_io => true, :eventmachine => true
 
 get '/' do
   redirect './on'
