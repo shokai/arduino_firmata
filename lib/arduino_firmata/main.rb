@@ -6,7 +6,7 @@ module ArduinoFirmata
 
   def self.connect(serial_name=nil, params={}, &block)
     serial_name = self.list[0] unless serial_name
-
+    raise Error.new 'Arduino not found' unless serial_name
     Params.default.each do |k,v|
       params[k] = v unless params[k]
     end

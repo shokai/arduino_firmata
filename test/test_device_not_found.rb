@@ -5,13 +5,11 @@ class TestDeviceNotFound < MiniTest::Unit::TestCase
   def test_nodevice
     err = nil
     begin
-      a = ArduinoFirmata.connect nil
+      a = ArduinoFirmata.connect 'dummy-device'
     rescue => e
       err = e
-    ensure
-      a.close
     end
-    assert e.kind_of? ArduinoFirmata::Error
+    assert e.kind_of? StandardError
   end
 
 end
