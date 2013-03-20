@@ -17,6 +17,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency 'serialport', '>= 1.1.0'
-  gem.add_dependency 'args_parser', '>= 0.1.2'
-  gem.add_dependency 'event_emitter', '>= 0.2.2'
+  gem.add_dependency 'args_parser', '>= 0.1.4'
+  gem.add_dependency 'event_emitter', '>= 0.2.4'
 end
