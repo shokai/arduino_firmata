@@ -65,10 +65,10 @@ module ArduinoFirmata
         write 1
       end
 
-      write REPORT_VERSION
       loop do
+        write REPORT_VERSION
+        sleep 0.5
         break if @version
-        sleep 0.3
       end
       sleep 0.5
     end
