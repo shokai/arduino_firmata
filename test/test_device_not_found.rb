@@ -1,6 +1,6 @@
 require File.expand_path 'test_helper', File.dirname(__FILE__)
 
-class TestDeviceNotFound < MiniTest::Unit::TestCase
+class TestDeviceNotFound < MiniTest::Test
 
   def test_nodevice
     err = nil

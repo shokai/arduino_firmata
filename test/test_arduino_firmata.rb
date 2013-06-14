@@ -1,6 +1,6 @@
 require File.expand_path 'test_helper', File.dirname(__FILE__)
 
-class TestArduinoFirmata < MiniTest::Unit::TestCase
+class TestArduinoFirmata < MiniTest::Test
 
   def setup
     @arduino = ArduinoFirmata.connect ENV['ARDUINO']
