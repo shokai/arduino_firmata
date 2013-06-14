@@ -1,3 +1,7 @@
+=== 0.2.9 2013-06-14
+
+* modify initialize process to share an arduino between multiple ruby processes
+
 === 0.2.8 2013-03-21
 
 * throw error if default arduino not found
