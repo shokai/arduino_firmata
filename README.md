@@ -76,6 +76,7 @@ Digital Read
 arduino.pin_mode 7, ArduinoFirmata::INPUT
 puts arduino.digital_read 7  # => true/false
 
+## regist event
 arduino.on :digital_read do |pin, status|
   if pin == 7
     puts "digital pin #{pin} changed : #{status}"
@@ -95,6 +96,7 @@ Analog Read
 ```ruby
 puts arduino.analog_read 0  # => 0 ~ 1023
 
+## regist event
 arduino.on :analog_read do |pin, value|
   if pin == 0
     puts "analog pin #{pin} changed : #{value}"
