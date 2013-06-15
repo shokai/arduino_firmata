@@ -7,9 +7,7 @@ arduino = ArduinoFirmata.connect ARGV.shift
 arduino.pin_mode 2, ArduinoFirmata::INPUT
 
 arduino.on :digital_read do |pin, status|
-  if pin == 2
-    puts "digital pin #{pin} changed : #{status}"
-  end
+  puts "digital pin #{pin} changed : #{status}"
 end
 
 led_stat = false
