@@ -1,8 +1,11 @@
 arduino_firmata
 ===============
+Arduino Firmata protocol (http://firmata.org) implementation on Ruby.
 
-* Arduino Firmata protocol (http://firmata.org) implementation on Ruby.
-* http://shokai.github.com/arduino_firmata
+* Firmata is a protocol to controll Arduino from software on PC.
+* You can embed Arduino code into Ruby application.
+* Support sharing an Arduino between multiple processes.
+* http://shokai.github.io/arduino_firmata
 
 
 Install
