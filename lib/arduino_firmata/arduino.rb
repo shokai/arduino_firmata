@@ -218,10 +218,9 @@ module ArduinoFirmata
               end
             when ANALOG_MESSAGE
               analog_value = (@stored_input_data[0] << 7) + @stored_input_data[1]
-              unless @analog_input_data[@multi_byte_channel] == analog_value
-                emit :analog_read, @multi_byte_channel, analog_value
-              end
+              old = analog_read(@multi_byte_channel)
               @analog_input_data[@multi_byte_channel] = analog_value
+              emit :analog_read, @multi_byte_channel, analog_value if old != analog_value
             when REPORT_VERSION
               @version = "#{@stored_input_data[1]}.#{@stored_input_data[0]}"
             end
