@@ -25,7 +25,7 @@ module ArduinoFirmata
       @version = nil
 
       @serial = SerialPort.new(serial_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
-      @serial.read_timeout = 3
+      @serial.read_timeout = 1000
       sleep 3
       @status = Status::OPEN
 
