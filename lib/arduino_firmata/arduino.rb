@@ -5,7 +5,8 @@ module ArduinoFirmata
 
     attr_reader :version, :status, :nonblock_io, :eventmachine
 
-    def initialize(serial_name, params)
+    def initialize(serialport_name, params)
+      @serialport_name = serialport_name
       @nonblock_io = !!params[:nonblock_io]
       @eventmachine = !!params[:eventmachine]
       @read_byte_size = eventmachine ? 256 : 9600
@@ -24,9 +25,9 @@ module ArduinoFirmata
 
       @version = nil
 
-      @serial = SerialPort.new(serial_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
-      @serial.read_timeout = 1000
-      sleep 3
+      @serial = SerialPort.new(@serialport_name, params[:bps], params[:bit], params[:stopbit], params[:parity])
+      @serial.read_timeout = 10
+      sleep 3 if old_arduino_device?
       @status = Status::OPEN
 
       at_exit do
@@ -57,7 +58,7 @@ module ArduinoFirmata
         sleep 0.5
         break if @version
       end
-      sleep 0.5
+      sleep 0.5 if old_arduino_device?
     end
 
     def run(&block)
@@ -67,6 +68,10 @@ module ArduinoFirmata
       else
         Thread.new &block
       end
+    end
+
+    def old_arduino_device?
+      File.basename(@serialport_name) !~ /^(tty\.usbmodem|ttyACM)/
     end
 
     def close
