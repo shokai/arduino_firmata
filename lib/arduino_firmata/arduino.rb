@@ -29,21 +29,8 @@ module ArduinoFirmata
       sleep 3
       @status = Status::OPEN
 
-      trap 'SIGHUP' do
+      at_exit do
         close
-        exit
-      end
-      trap 'SIGINT' do
-        close
-        exit
-      end
-      trap 'SIGKILL' do
-        close
-        exit
-      end
-      trap 'SIGTERM' do
-        close
-        exit
       end
 
       @thread_status = false
