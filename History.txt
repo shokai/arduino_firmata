@@ -1,3 +1,9 @@
+=== 0.3.2 2013-08-28
+
+* use "Object#at_exit" insteadof trap "SIHUP/SIGINT"
+* speed up initialization phase by detecting device-name
+  * thank you for suggestion and pull-request @odarriba
+
 === 0.3.1 2013-08-05
 
 * fix sample's magick comment
