@@ -5,6 +5,7 @@
 vendor
 .sass-cache
 .bundle
+.ruby-version
 config.yml
 *.gem
 *.rbc
