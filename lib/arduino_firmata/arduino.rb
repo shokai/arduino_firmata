@@ -175,9 +175,9 @@ module ArduinoFirmata
     def read
       return if status == Status::CLOSE
       if nonblock_io
-        @serial.read_nonblock @read_byte_size rescue EOFError
+        @serial.read_nonblock @read_byte_size rescue ''
       else
-        @serial.read @read_byte_size rescue EOFError
+        @serial.read @read_byte_size rescue ''
       end
     end
 
