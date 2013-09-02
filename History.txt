@@ -1,3 +1,8 @@
+=== 0.3.3 2013-09-02
+
+* bugfix EOFError handling
+  * thank you for contributing @threez
+
 === 0.3.2 2013-08-28
 
 * use "Object#at_exit" insteadof trap "SIHUP/SIGINT"
