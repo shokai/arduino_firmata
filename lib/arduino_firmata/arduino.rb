@@ -181,7 +181,7 @@ module ArduinoFirmata
         else
           data = @serial.read @read_byte_size
         end
-      rescue EOFError => e
+      rescue IOError, EOFError => e
       end
       data
     end
