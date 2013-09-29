@@ -1,3 +1,7 @@
+=== 0.3.4 2013-09-29
+
+* bugfix "write would block (Errno::EAGAIN)" with eventmachine
+  * thank you for contributing @threez
 === 0.3.3 2013-09-02
 
 * bugfix EOFError handling
