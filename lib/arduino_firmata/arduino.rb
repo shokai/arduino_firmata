@@ -166,7 +166,12 @@ module ArduinoFirmata
     def write(cmd)
       return if status == Status::CLOSE
       if nonblock_io
-        @serial.write_nonblock cmd.chr
+        begin
+          @serial.write_nonblock cmd.chr
+        rescue Errno::EAGAIN
+          sleep 0.1
+          retry
+        end
       else
         @serial.write cmd.chr
       end
