@@ -10,9 +10,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     args_parser (0.2.0)
-    backports (3.3.2)
+    backports (3.3.4)
     event_emitter (0.2.5)
-    minitest (5.0.6)
+    minitest (5.0.8)
     rake (10.1.0)
     serialport (1.1.0)
 
