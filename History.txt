@@ -1,3 +1,7 @@
+=== 0.3.5 2013-11-12
+
+* check arguments on digital/analog read/write  #34
+
 === 0.3.4 2013-09-29
 
 * bugfix "write would block (Errno::EAGAIN)" with eventmachine
