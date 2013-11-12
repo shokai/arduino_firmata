@@ -105,14 +105,17 @@ module ArduinoFirmata
     end
 
     def digital_read(pin)
+      raise ArgumentError, 'invalid pin number' if pin.class != Fixnum or pin < 0
       (@digital_input_data[pin >> 3] >> (pin & 0x07)) & 0x01 > 0
     end
 
     def analog_read(pin)
+      raise ArgumentError, 'invalid pin number' if pin.class != Fixnum or pin < 0
       @analog_input_data[pin]
     end
 
     def pin_mode(pin, mode)
+      raise ArgumentError, 'invalid pin number' if pin.class != Fixnum or pin < 0
       write SET_PIN_MODE
       write pin
       mode = case mode
@@ -129,6 +132,7 @@ module ArduinoFirmata
     end
 
     def digital_write(pin, value)
+      raise ArgumentError, 'invalid pin number' if pin.class != Fixnum or pin < 0
       pin_mode pin, OUTPUT
       port_num = (pin >> 3) & 0x0F
       if value == 0 or value == false
@@ -145,6 +149,8 @@ module ArduinoFirmata
     end
 
     def analog_write(pin, value)
+      raise ArgumentError, 'invalid pin number' if pin.class != Fixnum or pin < 0
+      raise ArgumentError, 'invalid analog value' if value.class != Fixnum or value < 0
       pin_mode pin, PWM
       write(ANALOG_MESSAGE | (pin & 0x0F))
       write(value & 0x7F)
@@ -154,6 +160,8 @@ module ArduinoFirmata
     end
 
     def servo_write(pin, angle)
+      raise ArgumentError, 'invalid pin number' if pin.class != Fixnum or pin < 0
+      raise ArgumentError, 'invalid angle' if angle.class != Fixnum or angle < 0
       pin_mode pin, SERVO
       write(ANALOG_MESSAGE | (pin & 0x0F))
       write(angle & 0x7F)
