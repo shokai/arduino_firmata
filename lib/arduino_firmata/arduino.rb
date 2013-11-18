@@ -44,6 +44,13 @@ module ArduinoFirmata
         @thread_status = false
       end
 
+      loop do
+        write REPORT_VERSION
+        sleep 0.5
+        break if @version
+      end
+      sleep 0.5 if old_arduino_device?
+
       (0...6).each do |i|
         write(REPORT_ANALOG | i)
         write 1
@@ -52,13 +59,6 @@ module ArduinoFirmata
         write(REPORT_DIGITAL | i)
         write 1
       end
-
-      loop do
-        write REPORT_VERSION
-        sleep 0.5
-        break if @version
-      end
-      sleep 0.5 if old_arduino_device?
     end
 
     def run(&block)
