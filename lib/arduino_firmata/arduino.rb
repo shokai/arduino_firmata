@@ -71,7 +71,7 @@ module ArduinoFirmata
     end
 
     def old_arduino_device?
-      File.basename(@serialport_name) !~ /^tty\.usbmodem/
+      File.basename(@serialport_name) =~ /^tty\.usbserial/ ? true : false
     end
 
     def close
