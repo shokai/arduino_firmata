@@ -49,7 +49,7 @@ module ArduinoFirmata
         sleep 0.5
         break if @version
       end
-      sleep 0.5 if old_arduino_device?
+      sleep 3 if old_arduino_device?
 
       (0...6).each do |i|
         write(REPORT_ANALOG | i)
@@ -71,7 +71,7 @@ module ArduinoFirmata
     end
 
     def old_arduino_device?
-      File.basename(@serialport_name) =~ /^tty\.usbserial/ ? true : false
+      File.basename(@serialport_name) =~ /tty\.usbserial|ttyUSB/ ? true : false
     end
 
     def close
