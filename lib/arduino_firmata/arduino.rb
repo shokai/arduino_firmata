@@ -224,7 +224,7 @@ module ArduinoFirmata
               @digital_input_data[@multi_byte_channel] = input_data
               0.upto(13).each do |i|
                 next unless (0x01 << i) & diff > 0
-                emit :digital_read, i, (input_data & diff > 0)
+                emit :digital_read, i+@multi_byte_channel*8, (input_data & diff > 0)
               end
             when ANALOG_MESSAGE
               analog_value = (@stored_input_data[0] << 7) + @stored_input_data[1]
